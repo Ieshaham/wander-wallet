@@ -1,31 +1,89 @@
-.App {
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.heart {
-  color: #ff0000;
-}
-
-.small {
-  font-size: 0.75rem;
-}
+/* Base Styles */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb; /* Light background */
+    color: #374151; /* Dark text color */
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #ffffff; /* White background for header */
+    border-bottom: 1px solid #e5e7eb; /* Light border */
+  }
+  
+  nav {
+    padding: 1rem 2rem; /* Padding for the nav */
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #374151; /* Dark link color */
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #3b82f6; /* Hover color for links */
+  }
+  
+  /* Mobile Menu Styles */
+  .mobile-menu {
+    background-color: #ffffff; /* White background for mobile menu */
+    border-top: 1px solid #e5e7eb; /* Light border */
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    padding: 2rem 1rem; /* Add some padding */
+    max-width: 800px; /* Max width for main content */
+    margin: 0 auto; /* Center the content */
+    text-align: center; /* Center text */
+  }
+  
+  .main-content h1 {
+    font-size: 2.5rem; /* Heading size */
+    margin: 1.5rem 0; /* Margin around heading */
+  }
+  
+  .main-content p {
+    font-size: 1.125rem; /* Paragraph size */
+    margin: 1rem 0; /* Margin around paragraph */
+  }
+  
+  /* Button Styles */
+  .button {
+    display: inline-block;
+    background-color: #3b82f6; /* Button background */
+    color: white; /* Button text color */
+    padding: 0.5rem 1rem; /* Padding */
+    border-radius: 0.375rem; /* Rounded corners */
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #2563eb; /* Darker on hover */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
+    }
+  
+    .main-content {
+      padding: 1rem; /* Less padding on small screens */
+    }
+  
+    .main-content h1 {
+      font-size: 2rem; /* Smaller heading size */
+    }
+  }
+  
