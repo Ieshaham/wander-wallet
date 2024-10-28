@@ -10,6 +10,8 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
             <span className="sr-only">Your Company</span>
             
           </a>
+
+          
         </div>
         {/* Mobile Menu Button */}
         <div className="flex lg:hidden">
