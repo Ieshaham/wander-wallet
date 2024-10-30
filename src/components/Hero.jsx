@@ -1,18 +1,29 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ isMenuOpen, setIsMenuOpen }) {
+  const navigate = useNavigate();
+
+  const goToLogin = () => navigate('/login');
+
+  const goToHome = () => navigate('/');
+
+  const goToSignup = () => {
+    navigate('/signup'); // Use lowercase for consistency
+  };
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         {/* Logo and Desktop Menu */}
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
-          <span className="text-lg font-bold">Wander Wallet</span>
-            
+            <span
+            onClick = {goToHome}
+            className="text-lg font-bold">Wander Wallet</span>
           </a>
-
-          
         </div>
+
         {/* Mobile Menu Button */}
         <div className="flex lg:hidden">
           <button
@@ -26,15 +37,22 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
             </svg>
           </button>
         </div>
+
         {/* Desktop Menu */}
-        <div className="hidden lg:flex lg:gap-x-12">
-          {["Product", "Features", "Marketplace", "Company"].map((item) => (
-            <a key={item} href="#" className="text-sm font-semibold leading-6 text-gray-900">{item}</a>
-          ))}
-        </div>
-        {/* Login Link */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+          <button 
+            onClick={goToSignup}
+            className="text-sm font-semibold leading-6 text-gray-900 bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded" 
+            style={{ marginRight: '10px' }}>
+            Sign Up
+          </button>
+
+          <button 
+  onClick={goToLogin}
+  type="button" // Ensure the type is button
+  className="text-sm font-semibold leading-6 text-gray-900 bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
+  Log In
+</button>
         </div>
       </nav>
 
