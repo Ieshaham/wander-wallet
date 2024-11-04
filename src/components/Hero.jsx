@@ -9,7 +9,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
   const goToHome = () => navigate('/');
 
   const goToSignup = () => {
-    navigate('/signup'); // Use lowercase for consistency
+    navigate('/signup'); 
   };
 
   return (
@@ -49,9 +49,9 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
 
           <button 
   onClick={goToLogin}
-  type="button" // Ensure the type is button
+  type="button" 
   className="text-sm font-semibold leading-6 text-gray-900 bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-  Log In
+  Sign In
 </button>
         </div>
       </nav>

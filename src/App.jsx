@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import MainContent from './components/MainContent';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<MainContent />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} /> 
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
