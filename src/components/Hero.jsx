@@ -1,16 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 function Header({ isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
 
-  const goToLogin = () => navigate('/login');
-
-  const goToHome = () => navigate('/');
-
-  const goToSignup = () => {
-    navigate('/signup'); 
-  };
+  const goToHome = () => navigate('/'); // Navigate to home page when logo is clicked
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -19,8 +14,11 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span
-            onClick = {goToHome}
-            className="text-lg font-bold">Wander Wallet</span>
+              onClick={goToHome}
+              className="text-lg font-bold cursor-pointer"
+            >
+              Wander Wallet
+            </span>
           </a>
         </div>
 
@@ -38,22 +36,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
           </button>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button 
-            onClick={goToSignup}
-            className="text-sm font-semibold leading-6 text-gray-900 bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded" 
-            style={{ marginRight: '10px' }}>
-            Sign Up
-          </button>
-
-          <button 
-  onClick={goToLogin}
-  type="button" 
-  className="text-sm font-semibold leading-6 text-gray-900 bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-  Sign In
-</button>
-        </div>
+       
       </nav>
 
       {/* Mobile Menu */}
@@ -76,12 +59,8 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {["Product", "Features", "Marketplace", "Company"].map((item) => (
-                    <a key={item} href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{item}</a>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <a href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                  <Link to="/" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</Link>
+                  
                 </div>
               </div>
             </div>

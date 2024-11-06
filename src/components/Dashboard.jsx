@@ -1,12 +1,7 @@
-// ChartComponent.jsx
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-
-// Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title);
+import BarGraph from './BarGraph'; // Import the BarChart component
 
 // User data and navigation items
 const user = {
@@ -29,7 +24,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-// User menu component
+
 function UserMenu() {
   return (
     <Menu as="div" className="relative ml-3">
@@ -54,43 +49,17 @@ function UserMenu() {
   );
 }
 
-// Main ChartComponent
+
 export default function ChartComponent() {
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'Sales',
-        data: [65, 59, 80, 81, 56, 55, 40],
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Sales Data',
-      },
-    },
-  };
-
   return (
     <div className="min-h-full">
       <Disclosure as="nav" className="bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-4 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <img
-                  alt="Your Company"
+                  alt="Wander Wallet"
                   src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                   className="h-8 w-8"
                 />
@@ -136,18 +105,19 @@ export default function ChartComponent() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">Budget Overview</h1>
         </div>
-        <div className="stat-row">
-            <div className='Total-budget'> Total Budget</div>
-            <div className='Spent-budget'> Spent</div>
-            <div className='remaining-budget'> Remaining Budget</div>
+        <div className="stat-row flex space-x-4 px-4 sm:px-6 lg:px-8">
+          <div className="Total-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Total Budget</div>
+          <div className="Spent-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Spent</div>
+          <div className="remaining-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Remaining Budget</div>
         </div>
       </header>
+          <div className="bar-chart w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
+            <BarGraph />
+            
+          </div>
       <main>
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <Bar data={data} options={options} />
-        </div>
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"></div>
       </main>
     </div>
   );
 }
-

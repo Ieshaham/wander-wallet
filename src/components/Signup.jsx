@@ -1,6 +1,63 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const SignupForm = () => {
+  // Form data
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  // Error state
+  const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
+
+  // Update form data on change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  // Validate form fields
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.fullName) newErrors.fullName = 'Full name is required';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email address is invalid';
+    }
+    if (!formData.password) newErrors.password = 'Password is required';
+    else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+    
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords must match';
+    }
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors, false if errors are present
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validate()) {
+      // If form is valid, redirect to Dashboard
+      console.log('Form submitted successfully');
+      navigate('/dashboard'); // Redirect to Dashboard on success
+    }
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -10,30 +67,35 @@ const LoginForm = () => {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
-          Sign Up 
+          Sign Up
         </h2>
-        <h2 className="mt-1 text-center text-1xl tracking-tight text-gray-700">
+        <h2 className="mt-1 text-center text-xl tracking-tight text-gray-700">
           Create a new account
         </h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-900">
+            <label htmlFor="fullName" className="block text-sm font-medium text-gray-900">
               Full Name
             </label>
             <div className="mt-2">
               <input
-              id="name"
-              name="name"
-              type="name"
-              required
-              autoComplete="name"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                id="fullName"
+                name="fullName"
+                type="text"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
               />
+              {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
             </div>
-            <label htmlFor="email" className=" mt-4 block text-sm font-medium text-gray-900">
+          </div>
+
+          <div>
+            <label htmlFor="email" className="mt-4 block text-sm font-medium text-gray-900">
               Email address
             </label>
             <div className="mt-2">
@@ -41,47 +103,48 @@ const LoginForm = () => {
                 id="email"
                 name="email"
                 type="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 required
-                autoComplete="email"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
               />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
             </div>
           </div>
 
           <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-                Password
-              </label>
-           
-            </div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-900">
+              Password
+            </label>
             <div className="mt-2">
               <input
                 id="password"
                 name="password"
                 type="password"
+                value={formData.password}
+                onChange={handleInputChange}
                 required
-                autoComplete="current-password"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
               />
+              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
             </div>
           </div>
+
           <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-                Confirm Password
-              </label>
-           
-            </div>
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-900">
+              Confirm Password
+            </label>
             <div className="mt-2">
               <input
-                id="password"
-                name="password"
+                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
                 required
-                autoComplete="current-password"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
               />
+              {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>}
             </div>
           </div>
 
@@ -106,4 +169,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
