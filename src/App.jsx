@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard'
 import SignupButton from './components/SignupButton'
 import LoginButton from './components/LoginButton'
 import BarGraph from './components/BarGraph';
-import DestinationList from './components/DestinationList';
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ function App() {
           <Route path="/signupButton" element={<SignupButton />} />
           <Route path="/loginButton" element={<LoginButton />} />
           <Route path="/barGraph" element={<BarGraph />} />
-          <Route path="/destinationList" element={<DestinationList />} />
+          
         </Routes>
       </div>
     </Router>

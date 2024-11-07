@@ -111,10 +111,11 @@ export default function ChartComponent() {
           <div className="remaining-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Remaining Budget</div>
         </div>
       </header>
+
           <div className="bar-chart w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
             <BarGraph />
-            
           </div>
+          
       <main>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"></div>
       </main>
