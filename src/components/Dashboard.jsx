@@ -1,7 +1,11 @@
 import React from 'react';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import BarGraph from './BarGraph'; // Import the BarChart component
+import BarGraph from './BarGraph'; 
+import Calendar from './Calendar';
+import CurrencyCounter from './CurrencyCounter';
+import Chart from './Chart';
+import ExpenseChart from './ExpenseChart';
 
 // User data and navigation items
 const user = {
@@ -24,12 +28,11 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-
 function UserMenu() {
   return (
     <Menu as="div" className="relative ml-3">
       <div>
-        <MenuButton className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+        <MenuButton className="flex items-center rounded-full bg-gray-800 p-2 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
         </MenuButton>
       </div>
@@ -49,47 +52,42 @@ function UserMenu() {
   );
 }
 
-
 export default function ChartComponent() {
   return (
-    <div className="min-h-full">
-      <Disclosure as="nav" className="bg-gray-800">
+    <div className="min-h-full bg-gray-50">
+      {/* Navigation Bar */}
+      <Disclosure as="nav" className="bg-gray-800 shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-4 items-center justify-between">
-            <div className="flex items-center">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
                 <img
-                  alt="Wander Wallet"
+                  alt="Logo"
                   src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                   className="h-8 w-8"
                 />
               </div>
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      aria-current={item.current ? 'page' : undefined}
-                      className={item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
+              <div className="hidden md:flex space-x-4">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={`text-white hover:text-indigo-400 ${item.current ? 'font-semibold' : 'text-gray-300'}`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="ml-4 flex items-center md:ml-6">
-                <button
-                  type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon aria-hidden="true" className="h-6 w-6" />
-                </button>
-                <UserMenu />
-              </div>
+            <div className="flex items-center space-x-4">
+              <button
+                type="button"
+                className="p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              >
+                <span className="sr-only">View notifications</span>
+                <BellIcon aria-hidden="true" className="h-6 w-6" />
+              </button>
+              <UserMenu />
             </div>
             <div className="-mr-2 flex md:hidden">
               <DisclosureButton className="group inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -101,24 +99,56 @@ export default function ChartComponent() {
         </div>
       </Disclosure>
 
-      <header className="bg-white shadow">
+      {/* Header Section */}
+      <header className="bg-white shadow-md">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Budget Overview</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Budget Overview</h1>
         </div>
-        <div className="stat-row flex space-x-4 px-4 sm:px-6 lg:px-8">
-          <div className="Total-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Total Budget</div>
-          <div className="Spent-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Spent</div>
-          <div className="remaining-budget w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">Remaining Budget</div>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <span className="text-sm text-gray-500">Total Budget</span>
+              <span className="font-semibold text-gray-800">$12,000</span>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <span className="text-sm text-gray-500">Spent</span>
+              <span className="font-semibold text-gray-800">$7,500</span>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <span className="text-sm text-gray-500">Remaining Budget</span>
+              <span className="font-semibold text-gray-800">$4,500</span>
+            </div>
+          </div>
         </div>
       </header>
 
-          <div className="bar-chart w-1/4 bg-gray-100 p-4 rounded-lg shadow-md">
+      {/* Main Content */}
+      <main className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Ensure items don't stretch vertically */}
+          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-80">
+            <Calendar />
+          </div>
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
             <BarGraph />
           </div>
-          
-      <main>
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"></div>
+
+
+          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-80">
+            <CurrencyCounter />
+          </div>
+
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+            <Chart />
+          </div>
+
+          <div className="col-span-2 bg-white p-6 rounded-lg shadow-md h-80">
+            <ExpenseChart />
+          </div>
+
+        </div>
       </main>
     </div>
   );
 }
+
