@@ -10,7 +10,6 @@ import SignupButton from './components/SignupButton'
 import LoginButton from './components/LoginButton'
 import BarGraph from './components/BarGraph';
 import Calendar from './components/Calendar';
-import CurrencyConverter from './components/CurrencyCounter';
 import Chart from './components/Chart';
 import ExpenseChart from './components/ExpenseChart';
 
@@ -32,7 +31,6 @@ function App() {
           <Route path="/loginButton" element={<LoginButton />} />
           <Route path="/barGraph" element={<BarGraph />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/currencyCounter" element={<CurrencyConverter />} /> 
           <Route path="/chart" element={<Chart />} />
           <Route path="/expenseChart" element={<ExpenseChart />} />
         </Routes>

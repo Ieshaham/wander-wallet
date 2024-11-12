@@ -1,58 +1,59 @@
-import React from 'react';
+import { useState } from 'react';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import BarGraph from './BarGraph'; 
 import Calendar from './Calendar';
-import CurrencyCounter from './CurrencyCounter';
 import Chart from './Chart';
 import ExpenseChart from './ExpenseChart';
 
-// User data and navigation items
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
-
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
-];
-
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-];
-
-function UserMenu() {
-  return (
-    <Menu as="div" className="relative ml-3">
-      <div>
-        <MenuButton className="flex items-center rounded-full bg-gray-800 p-2 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
-        </MenuButton>
-      </div>
-      <MenuItems className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">
-        {userNavigation.map((item) => (
-          <MenuItem key={item.name}>
-            <a
-              href={item.href}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              {item.name}
-            </a>
-          </MenuItem>
-        ))}
-      </MenuItems>
-    </Menu>
-  );
-}
-
 export default function ChartComponent() {
+  const [availableBudget, setAvailableBudget] = useState(0);
+
+  // User data and navigation items
+  const user = {
+    name: 'Tom Cook',
+    email: 'tom@example.com',
+    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  };
+
+  const navigation = [
+    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Team', href: '#', current: false },
+    { name: 'Projects', href: '#', current: false },
+    { name: 'Calendar', href: '#', current: false },
+    { name: 'Reports', href: '#', current: false },
+  ];
+
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#' },
+  ];
+
+  function UserMenu() {
+    return (
+      <Menu as="div" className="relative ml-3">
+        <div>
+          <MenuButton className="flex items-center rounded-full bg-gray-800 p-2 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
+          </MenuButton>
+        </div>
+        <MenuItems className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">
+          {userNavigation.map((item) => (
+            <MenuItem key={item.name}>
+              <a
+                href={item.href}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                {item.name}
+              </a>
+            </MenuItem>
+          ))}
+        </MenuItems>
+      </Menu>
+    );
+  }
+
   return (
     <div className="min-h-full bg-gray-50">
       {/* Navigation Bar */}
@@ -108,7 +109,7 @@ export default function ChartComponent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
               <span className="text-sm text-gray-500">Total Budget</span>
-              <span className="font-semibold text-gray-800">$12,000</span>
+              <span className="font-semibold text-gray-800">${availableBudget}</span>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
               <span className="text-sm text-gray-500">Spent</span>
@@ -116,39 +117,33 @@ export default function ChartComponent() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
               <span className="text-sm text-gray-500">Remaining Budget</span>
-              <span className="font-semibold text-gray-800">$4,500</span>
+              <span className="font-semibold text-gray-800">${availableBudget}</span>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="px-4 sm:px-6 lg:px-8 py-6">
+      <main className="px-4 sm:px-6 lg:px-8 py-6 bg-white dark:bg-gray-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Ensure items don't stretch vertically */}
-          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-80">
+          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-100">
             <Calendar />
           </div>
-          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
-            <BarGraph />
-          </div>
 
-
-          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-80">
-            <CurrencyCounter />
+          <div className="col-span-2 bg-white p-6 rounded-lg shadow-md h-100">
+            <ExpenseChart />
           </div>
 
           <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
             <Chart />
           </div>
 
-          <div className="col-span-2 bg-white p-6 rounded-lg shadow-md h-80">
-            <ExpenseChart />
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+            <BarGraph />
           </div>
-
         </div>
       </main>
     </div>
   );
 }
-
