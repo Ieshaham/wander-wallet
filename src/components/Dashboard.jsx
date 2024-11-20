@@ -5,6 +5,7 @@ import BarGraph from './BarGraph';
 import Calendar from './Calendar';
 import Chart from './Chart';
 import ExpenseChart from './ExpenseChart';
+import CurrencyConverter from './CurrencyConverter';
 
 export default function ChartComponent() {
   const [availableBudget, setAvailableBudget] = useState(0);
@@ -142,6 +143,10 @@ export default function ChartComponent() {
           <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
             <BarGraph />
           </div>
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+            <CurrencyConverter />
+          </div>
+          
         </div>
       </main>
     </div>
