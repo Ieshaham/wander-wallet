@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import BarGraph from './BarGraph'; 
+import BarGraph from './BarGraph';
 import Calendar from './Calendar';
 import Chart from './Chart';
 import ExpenseChart from './ExpenseChart';
@@ -94,7 +94,6 @@ export default function ChartComponent() {
             <div className="-mr-2 flex md:hidden">
               <DisclosureButton className="group inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-                <XMarkIcon aria-hidden="true" className="hidden h-6 w-6" />
               </DisclosureButton>
             </div>
           </div>
@@ -127,26 +126,30 @@ export default function ChartComponent() {
       {/* Main Content */}
       <main className="px-4 sm:px-6 lg:px-8 py-6 bg-white dark:bg-gray-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Ensure items don't stretch vertically */}
-          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md h-100">
+          {/* Calendar Component */}
+          <div className="col-span-1 bg-white p-4 rounded-lg shadow-md">
             <Calendar />
           </div>
 
-          <div className="col-span-2 bg-white p-6 rounded-lg shadow-md h-100">
+          {/* Expense Chart */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-6 rounded-lg shadow-md w-full h-auto">
             <ExpenseChart />
           </div>
 
-          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+          {/* Main Chart */}
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md">
             <Chart />
           </div>
 
-          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+          {/* Bar Graph */}
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md">
             <BarGraph />
           </div>
-          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md h-80">
+
+          {/* Currency Converter */}
+          <div className="col-span-1 bg-white p-6 rounded-lg shadow-md">
             <CurrencyConverter />
           </div>
-          
         </div>
       </main>
     </div>

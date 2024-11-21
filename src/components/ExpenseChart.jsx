@@ -13,30 +13,38 @@ const HorizontalDataChart = () => {
   const titles = Object.keys(data[0]);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Expense Table</h2>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            {titles.map((title, index) => (
-              <th key={index} style={{ padding: '8px', border: '1px solid #ccc', backgroundColor: '#f4f4f4' }}>
-                {title}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {titles.map((title, colIndex) => (
-                <td key={colIndex} style={{ padding: '8px', border: '1px solid #ccc' }}>
-                  {row[title]}
-                </td>
+    <div className="p-6 font-sans">
+      <h2 className="text-2xl font-semibold mb-4">Expense Table</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse border border-gray-300">
+          <thead>
+            <tr>
+              {titles.map((title, index) => (
+                <th
+                  key={index}
+                  className="px-4 py-2 border border-gray-300 bg-gray-100 text-left text-sm font-medium text-gray-700"
+                >
+                  {title}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {titles.map((title, colIndex) => (
+                  <td
+                    key={colIndex}
+                    className="px-4 py-2 border border-gray-300 text-sm text-gray-800"
+                  >
+                    {row[title]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
