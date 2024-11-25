@@ -1,6 +1,7 @@
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+  darkMode: 'class', // Enable dark mode via class
+  theme: {
+    extend: {},
   },
+  plugins: [],
 }

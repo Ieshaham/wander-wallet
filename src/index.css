@@ -1,31 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-    --primary:141 110 235;
-    --ui-base: 253 253 253;
-    --ui-secondary: 245 245 245;
-    --ui-accent: 244 245 248;
-    --text-color: 34 34 34;
-    --text-muted: 75 85 99;
-    --border-color: 229 231 235;
+  --primary: 34, 193, 195; /* Example primary color */
+  --ui-base: 248, 248, 248; /* Light background color */
+  --ui-secondary: 200, 200, 200;
+  --text-color: 33, 33, 33;
+  --text-muted: 112, 112, 112;
+  --border-color: 200, 200, 200;
 }
 
-[data-theme = "data"] {
-    --ui-base: 18 18 18;
-    --ui-secondary: 28 28 28;
-    --ui-accent: 42 42 42;
-    --text-color: 255 255 255;
-    --text-muted: 156 163 175;
-    --border-color: 55 65 81;
-    
-}
-
-.stat-row {
-    display: flex;
-    flex-direction: row; /* or column */
-    justify-content: space-around; /* Align items horizontally */
-    align-items: center; /* Align items vertically */
-    border-width: 2px;
-    
-}
-.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
-    height: 250px;
+.dark {
+  --primary: 12, 44, 60; /* Dark primary color */
+  --ui-base: 30, 30, 30;  /* Dark background */
+  --text-color: 255, 255, 255;
+  --border-color: 100, 100, 100;
 }

@@ -12,7 +12,6 @@ import BarGraph from './components/BarGraph';
 import Calendar from './components/Calendar';
 import Chart from './components/Chart';
 import ExpenseChart from './components/ExpenseChart';
-import TravelMap from './components/CurrencyConverter';
 import CurrencyConverter from './components/CurrencyConverter';
 
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Disclosure, DisclosureButton, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline';
 import BarGraph from './BarGraph';
 import Calendar from './Calendar';
 import Chart from './Chart';
@@ -9,6 +9,17 @@ import CurrencyConverter from './CurrencyConverter';
 
 export default function ChartComponent() {
   const [availableBudget, setAvailableBudget] = useState(0);
+  const [darkMode, setDarkMode] = useState(false); // Dark mode state
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.documentElement.classList.add('dark'); // Add dark class to HTML element
+    } else {
+      document.documentElement.classList.remove('dark'); // Remove dark class
+    }
+  };
 
   // User data and navigation items
   const user = {
@@ -18,9 +29,7 @@ export default function ChartComponent() {
   };
 
   const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
+    { name: 'Home', href: './', current: true },
     { name: 'Calendar', href: '#', current: false },
     { name: 'Reports', href: '#', current: false },
   ];
@@ -56,9 +65,9 @@ export default function ChartComponent() {
   }
 
   return (
-    <div className="min-h-full bg-gray-50">
+    <div className={`min-h-full ${darkMode ? 'dark' : ''} bg-gray-50 dark:bg-gray-900`}>
       {/* Navigation Bar */}
-      <Disclosure as="nav" className="bg-gray-800 shadow-md">
+      <Disclosure as="nav" className="shadow-md" style={{ backgroundColor: "#F4F5F7" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -74,7 +83,7 @@ export default function ChartComponent() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`text-white hover:text-indigo-400 ${item.current ? 'font-semibold' : 'text-gray-300'}`}
+                    className={`text-gray-400 hover:text-indigo-400 ${item.current ? 'font-semibold' : 'text-gray-300'}`}
                   >
                     {item.name}
                   </a>
@@ -84,10 +93,18 @@ export default function ChartComponent() {
             <div className="flex items-center space-x-4">
               <button
                 type="button"
-                className="p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="p-1 text-gray-400 hover:text-indigo-400 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 <span className="sr-only">View notifications</span>
                 <BellIcon aria-hidden="true" className="h-6 w-6" />
+              </button>
+              {/* Dark Mode Icon 🌙 */}
+              <button
+                onClick={toggleDarkMode}
+                className="text-gray-400 hover:text-indigo-400 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              >
+                <span className="sr-only">Toggle Dark Mode</span>
+                🌙 {/* Dark Mode Icon */}
               </button>
               <UserMenu />
             </div>
@@ -107,15 +124,15 @@ export default function ChartComponent() {
         </div>
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div className="p-6 rounded-lg shadow-md flex justify-between items-center" style={{ backgroundColor: "#D8C9DF" }}>
               <span className="text-sm text-gray-500">Total Budget</span>
               <span className="font-semibold text-gray-800">${availableBudget}</span>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div className="p-6 rounded-lg shadow-md flex justify-between items-center" style={{ backgroundColor: "#DBF1A7" }}>
               <span className="text-sm text-gray-500">Spent</span>
               <span className="font-semibold text-gray-800">$7,500</span>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div className="p-6 rounded-lg shadow-md flex justify-between items-center" style={{ backgroundColor: "#D8ECEB" }}>
               <span className="text-sm text-gray-500">Remaining Budget</span>
               <span className="font-semibold text-gray-800">${availableBudget}</span>
             </div>

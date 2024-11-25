@@ -22,7 +22,8 @@ const HorizontalDataChart = () => {
               {titles.map((title, index) => (
                 <th
                   key={index}
-                  className="px-4 py-2 border border-gray-300 bg-gray-100 text-left text-sm font-medium text-gray-700"
+                  className="px-4 py-2 border border-gray-300 text-center text-sm font-medium text-gray-700"
+                  style={{backgroundColor:"#F4F5F7"}}
                 >
                   {title}
                 </th>
@@ -35,7 +36,7 @@ const HorizontalDataChart = () => {
                 {titles.map((title, colIndex) => (
                   <td
                     key={colIndex}
-                    className="px-4 py-2 border border-gray-300 text-sm text-gray-800"
+                    className="px-4 py-2 border border-gray-300 text-center text-sm text-gray-800"
                   >
                     {row[title]}
                   </td>
